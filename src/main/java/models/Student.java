@@ -1,9 +1,9 @@
 package models;
 
 import org.hibernate.annotations.Cascade;
-import sun.jvm.hotspot.gc.shared.Generation;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,12 +17,16 @@ public class Student {
     private List<Lesson> lessons;
     private int id;
 
-    public Student(String name, int enrolmentNumber, int age, Mentor mentor, Course course) {
+    public Student(String name, int enrolmentNumber, int age, Course course) {
         this.name = name;
         this.enrolmentNumber = enrolmentNumber;
         this.age = age;
         this.mentor = mentor;
         this.course = course;
+        this.lessons = new ArrayList<Lesson>();
+    }
+
+    public Student() {
     }
 
     @Column(name = "name")
@@ -93,5 +97,9 @@ public class Student {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void addLesson(Lesson lesson){
+        this.lessons.add(lesson);
     }
 }

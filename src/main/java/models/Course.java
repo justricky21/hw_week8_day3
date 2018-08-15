@@ -66,4 +66,8 @@ public class Course {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
+
+    public void addStudent(Student student){
+        this.students.add(student);
+    }
 }

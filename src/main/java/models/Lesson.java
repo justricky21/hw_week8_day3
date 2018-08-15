@@ -3,6 +3,7 @@ package models;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,6 +19,7 @@ public class Lesson {
         this.title = title;
         this.classroomNumber = classroomNumber;
         this.course = course;
+        this.students = new ArrayList<Student>();
     }
 
     public Lesson() {
@@ -73,5 +75,9 @@ public class Lesson {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void addStudent(Student student){
+        this.students.add(student);
     }
 }
