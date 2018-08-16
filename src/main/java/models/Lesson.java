@@ -14,15 +14,27 @@ public class Lesson {
     private Course course;
     private List<Student> students;
     private int id;
+    private Instructor instructor;
 
-    public Lesson(String title, int classroomNumber, Course course) {
+    public Lesson(String title, int classroomNumber, Course course, Instructor instructor) {
         this.title = title;
         this.classroomNumber = classroomNumber;
         this.course = course;
         this.students = new ArrayList<Student>();
+        this.instructor = instructor;
     }
 
     public Lesson() {
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "instructor_id", nullable = false)
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 
     @Column(name = "title")

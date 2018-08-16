@@ -1,27 +1,30 @@
 import db.DBHelper;
 import db.DBStudent;
-import models.Course;
-import models.Lesson;
-import models.Mentor;
-import models.Student;
+import models.*;
 
 import java.util.List;
 
 public class Runner {
 
     public static void main(String[] args) {
+
+        Instructor instructor1 = new Instructor("Some random person");
+        DBHelper.save(instructor1);
+        Instructor instructor2 = new Instructor("A controversial political figure");
+        DBHelper.save(instructor2);
+
         Course course1 = new Course("Advanced Shenanigans", "pHD");
         DBHelper.save(course1);
         Course course2 = new Course("Prime Ministering", "HND");
         DBHelper.save(course2);
 
-        Lesson lesson1 = new Lesson("Bickering over taxation", 10, course2);
+        Lesson lesson1 = new Lesson("Bickering over taxation", 10, course2, instructor2);
         DBHelper.save(lesson1);
-        Lesson lesson2 = new Lesson("Writing on walls", 9, course1);
+        Lesson lesson2 = new Lesson("Writing on walls", 9, course1,instructor1);
         DBHelper.save(lesson2);
-        Lesson lesson3 = new Lesson("Constituency allocation", 8, course2);
+        Lesson lesson3 = new Lesson("Constituency allocation", 8, course2,instructor2);
         DBHelper.save(lesson3);
-        Lesson lesson4 = new Lesson("Using Facebook without anyone noticing", 7, course1);
+        Lesson lesson4 = new Lesson("Using Facebook without anyone noticing", 7, course1,instructor1);
         DBHelper.save(lesson4);
 
         Student student1 = new Student("Mrs Tate", 230123, 67, course1);
@@ -44,6 +47,7 @@ public class Runner {
         List<Lesson> lessons = DBHelper.getAll(Lesson.class);
         List<Student> students = DBHelper.getAll(Student.class);
         List<Mentor> mentors = DBHelper.getAll(Mentor.class);
+        List<Instructor> instructors = DBHelper.getAll(Instructor.class);
 
     }
 }
